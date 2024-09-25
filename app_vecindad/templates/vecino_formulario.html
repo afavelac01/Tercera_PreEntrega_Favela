@@ -1,0 +1,13 @@
+{% extends 'padre.html' %}
+
+{% block contenidoQueCambia %}
+  
+  <form action="{% url 'VecinoFormulario' %}" method="post">{% csrf_token %}
+
+    {{mi_formulario.as_table}}
+
+    <button type="submit">Enviar</button>
+
+  </form>
+  
+{% endblock contenidoQueCambia %}
