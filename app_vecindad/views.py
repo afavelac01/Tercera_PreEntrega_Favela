@@ -14,6 +14,12 @@ def crea_vecino(req, nombre, domicilio):
     <p>Vecino: {nuevo_vecino.nombre} - Servicio {nuevo_vecino.servicio} creado con éxito!</p>
   """)
 
+def lista_vecinos(req):
+
+  lista = Vecino.objects.all()
+
+  return render(req, "lista_vecinos.html", {"lista_vecinos": lista})
+
 def crea_provedor(req, nombre, domicilio, precio_base):
     nuevo_provedor = Provedor(nombre=nombre, domicilio=domicilio)
     nuevo_provedor.save()
@@ -40,7 +46,7 @@ def instalaciones(req):
 
 def provedores(req):
 
-  return render(req, "instalaciones.html", {})
+  return render(req, "provedores.html", {})
 
 def vecino_formulario(req):
 
@@ -90,3 +96,15 @@ def provedor_formulario(req):
 
     mi_formulario = ProvedorFormulario()
     return render(req, "provedor_formulario.html", { "mi_formulario": mi_formulario })
+  
+def busqueda_servicio(req):
+
+  return render(req, "busqueda_servicio.html")
+
+def buscar_servicio(req):
+
+  nom_servicio = req.GET["servicio"]
+
+  provedores = Provedor.objects.filter(servicio__icontains=nom_servicio)
+  
+  return render(req, "resultado_busqueda.html", {"provedores": provedores, "servicio": nom_servicio })

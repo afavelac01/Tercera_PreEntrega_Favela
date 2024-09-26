@@ -1,0 +1,22 @@
+{% extends 'padre.html' %}
+
+{% block contenidoQueCambia %}
+  
+  <p>Estamos buscando Provedores con el servicio {{servicio}}</p>
+
+  
+  {% if provedores %}
+    <ul>
+      {% for provedor in provedores %}
+        <li>{{provedor.nombre}} - {{provedor.servicio}}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No se encontraron provedores con esos datos de búsqueda</p>
+
+  {% endif %}
+    
+
+    
+  
+{% endblock contenidoQueCambia %}
